@@ -32,6 +32,7 @@ module Model where
                    , speedp :: Speed
                    , accel :: Acceleration
                    , upCounter    :: Float
+                   , bulletCounter :: Float
                    }
   data Ufo = Enemy {
                    positionu :: Position
@@ -199,11 +200,11 @@ module Model where
     
   instance Shoot Player where
     shoot player gstate = newBullet : bullets gstate
-      where newBullet = Bullet 30 4 (-1*x,y) (-1*(directionp player))
+      where newBullet = Bullet 4 25 (-1*x,y) (-1*(directionp player))
             (x,y)     = positionp player
   {-instance Shoot Ufo where
     shoot ufo gstate = gstate { bullets = newBullet : bullet }
       where newBullet = Bullet 4 (positionu ufo) (directionu ufo)-}
   
   initialState :: GameState
-  initialState = GameState ShowNothing 0 S.empty 0 (Player 1 100 1 (0,0) 0 baseSpeed 10 0) [] []
+  initialState = GameState ShowNothing 0 S.empty 0 (Player 1 100 1 (0,0) 0 baseSpeed 10 0 0) [] []
